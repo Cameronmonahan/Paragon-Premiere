@@ -2,7 +2,7 @@
 
 Static marketing site for Paragon Premiere, the residential maintenance sister
 company to [Paragon Custom Homes](https://paragonhomesutah.com/). Plain
-HTML/CSS/JS — no build step, no framework, no dependencies.
+HTML/CSS/JS — no build step, no framework, no server-side dependencies.
 
 ## Structure
 
@@ -13,13 +13,14 @@ membership.html         5-tier membership model (Access / Annual Care /
                         Seasonal Care / Complete Care / Private Home Management)
 about.html              Company story, leadership, Home Passport
 service-areas.html      Salt Lake, Summit, Utah & Wasatch counties, with a
-                        custom SVG service-territory map
+                        real interactive map (see below)
 testimonials.html       Client testimonials (placeholder copy — see below)
 contact.html            Contact form + concierge info
 
 css/styles.css          Full design system (tokens, type, components)
 js/main.js              Mobile nav, FAQ accordion, footer year, tier
                         pre-select on contact form
+js/service-map.js       Real interactive map on service-areas.html (see below)
 images/                 Logo lockups, P-mark symbol, favicon, team photo
 ```
 
@@ -31,6 +32,12 @@ No build step required. Either:
 - Run a local server from this folder so relative paths behave exactly like
   production, e.g. `python3 -m http.server 8000` then visit
   `http://localhost:8000`.
+
+**Note:** `service-areas.html` needs an active internet connection to render
+— the map tiles and the Leaflet/Turf.js libraries load from a CDN at
+runtime. It was built and layout-tested in a network-isolated environment,
+so double-check it once on a connection with real internet before calling
+it done.
 
 ## Deploying
 
@@ -54,11 +61,32 @@ push this folder to a repo, then enable Pages on the `main` branch
   for dark backgrounds) were composited from the real Paragon Custom Homes
   P-mark. `symbol_light.png` / `symbol_dark.png` are the mark alone. These
   are a first pass, not final production logo files — see checklist below.
-- **Service area map**: `service-areas.html` includes a hand-built, inline
-  SVG map (no external map API, no API key, nothing to break) showing the
-  four-county territory as clean rounded tiles with pin markers. It's
-  stylized rather than geographically precise. On narrow screens it scrolls
-  horizontally instead of shrinking, so labels stay legible.
+
+### Service area map
+
+`service-areas.html` uses a real, interactive map — not a static image:
+
+- **[Leaflet](https://leafletjs.com/)** (open source, no API key) for the
+  interactive map itself (pan/zoom).
+- **[CARTO Positron](https://carto.com/basemaps)** light basemap tiles
+  (free tier, no API key) for the clean, minimal road/label styling.
+- **[Turf.js](https://turfjs.org/)** to merge four approximate county
+  outlines into one shaded "territory" polygon at page-load time, styled in
+  Bitter Gold.
+- Custom pin markers for each city, with a distinct gold pin for the
+  Salt Lake City home base.
+
+All three libraries load from cdnjs at runtime — nothing to install, but it
+does mean the map requires internet access to render (see note above). The
+county/city coordinates are reasonable approximations for a clean visual,
+not survey-accurate GIS boundaries — a small caption under the map says so.
+
+If you'd rather not depend on a live CDN, the same approach works with the
+libraries vendored locally: download `leaflet.js`/`leaflet.css` and
+`turf.min.js` into e.g. `js/vendor/`, and update the `<script>`/`<link>`
+tags in `service-areas.html` (or the `SERVICE_AREAS_EXTRA_HEAD` /
+`SERVICE_AREAS_EXTRA_FOOT` constants if regenerating from source) to point
+at the local files instead.
 
 ## Before this goes live — replace these placeholders
 
@@ -81,10 +109,9 @@ push this folder to a repo, then enable Pages on the `main` branch
 - [ ] **Hero / team background images** — several sections use styled
       placeholder blocks (gradient fills with a label) instead of real
       photography.
-- [ ] **Service area map** — pin locations and county shapes are stylized
-      for a clean look, not pulled from real GIS boundaries. Fine for a
-      marketing page; swap for a real embedded map if you need literal
-      geographic accuracy.
+- [ ] **Service area map** — verify it renders correctly with real internet
+      (see note above), and confirm the approximate county shapes and city
+      pin placements look right before launch.
 - [ ] **Contact form** — front-end only right now (shows a confirmation
       message on submit but doesn't send anywhere). Wire it to a form
       backend (Formspree, Netlify Forms, a serverless function, your CRM,

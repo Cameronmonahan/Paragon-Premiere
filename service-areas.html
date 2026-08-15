@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>#serviceMap{background:#E6E3D8}</style>
 </head>
 <body>
 <div class="top-bar">
@@ -61,219 +63,61 @@
   </div>
 </section>
 
-<section class="section" style="padding-bottom:2rem">
+<section class="section">
   <div class="container">
-    <div class="service-map-frame tick-frame">
-      <svg class="service-map-svg" viewBox="0 0 900 790" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Paragon Premiere's four-county Utah service area: Salt Lake, Summit, Utah, and Wasatch counties">
-  <defs>
-    <filter id="tileShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#303030" flood-opacity="0.10"/>
-    </filter>
-    <pattern id="mapGrid" width="30" height="30" patternUnits="userSpaceOnUse">
-      <path d="M30 0H0V30" fill="none" stroke="#8A8C79" stroke-width="0.5" opacity="0.18"/>
-    </pattern>
-  </defs>
-
-  <rect x="0" y="0" width="900" height="790" fill="url(#mapGrid)"/>
-
-  <rect x="120" y="60" width="660" height="600" rx="36" fill="none" stroke="#8A8C79" stroke-width="1.4" stroke-dasharray="2 7" opacity="0.7"/>
-  <text x="450" y="42" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="3" fill="#6C6E5E" text-anchor="middle">PARAGON PREMIERE SERVICE TERRITORY</text>
-
-  <g>
-    <rect x="150" y="210" width="300" height="230" rx="26" fill="#FFFFFF" stroke="#8A8C79" stroke-width="1.4" filter="url(#tileShadow)"/>
-    <text x="300.0" y="236" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2" fill="#6C6E5E" text-anchor="middle">SALT LAKE COUNTY</text>
-  </g>
-  <g>
-    <rect x="150" y="470" width="300" height="210" rx="26" fill="#FFFFFF" stroke="#8A8C79" stroke-width="1.4" filter="url(#tileShadow)"/>
-    <text x="300.0" y="496" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2" fill="#6C6E5E" text-anchor="middle">UTAH COUNTY</text>
-  </g>
-  <g>
-    <rect x="500" y="90" width="250" height="260" rx="26" fill="#FFFFFF" stroke="#8A8C79" stroke-width="1.4" filter="url(#tileShadow)"/>
-    <text x="625.0" y="116" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2" fill="#6C6E5E" text-anchor="middle">SUMMIT COUNTY</text>
-  </g>
-  <g>
-    <rect x="500" y="380" width="230" height="230" rx="26" fill="#FFFFFF" stroke="#8A8C79" stroke-width="1.4" filter="url(#tileShadow)"/>
-    <text x="615.0" y="406" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2" fill="#6C6E5E" text-anchor="middle">WASATCH COUNTY</text>
-  </g>
-
-  <g>
-    <circle cx="300" cy="300" r="19.0" fill="none" stroke="#F4D185" stroke-width="1.5" opacity="0.6"/>
-    <g transform="translate(277.2,254.4) scale(1.9)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#F4D185" stroke="#303030" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="318" y="294" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Salt Lake City</text>
-  </g>
-  <g>
-    
-    <g transform="translate(239.4,233.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="241" y="257" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="end">Bountiful</text>
-  </g>
-  <g>
-    
-    <g transform="translate(324.4,358.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="356" y="394" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Holladay &amp; Millcreek</text>
-  </g>
-  <g>
-    
-    <g transform="translate(279.4,386.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="311" y="422" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Sandy &amp; Draper</text>
-  </g>
-  <g>
-    
-    <g transform="translate(229.4,343.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="231" y="381" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="end">Cottonwood Heights</text>
-  </g>
-  <g>
-    
-    <g transform="translate(284.4,516.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="316" y="544" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Lehi &amp; American Fork</text>
-  </g>
-  <g>
-    
-    <g transform="translate(289.4,593.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="321" y="629" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Provo</text>
-  </g>
-  <g>
-    
-    <g transform="translate(194.4,558.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="196" y="594" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="end">Alpine &amp; Highland</text>
-  </g>
-  <g>
-    
-    <g transform="translate(589.6,169.2) scale(1.7)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="628" y="204" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Park City</text>
-  </g>
-  <g>
-    
-    <g transform="translate(559.4,128.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="561" y="152" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="end">Deer Valley</text>
-  </g>
-  <g>
-    
-    <g transform="translate(644.4,228.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="676" y="266" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Jeremy Ranch</text>
-  </g>
-  <g>
-    
-    <g transform="translate(634.4,288.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="666" y="338" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Kamas</text>
-  </g>
-  <g>
-    
-    <g transform="translate(572.0,434.0) scale(1.5)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="608" y="466" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="start">Heber City</text>
-  </g>
-  <g>
-    
-    <g transform="translate(544.4,498.8) scale(1.3)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" stroke="none" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="546" y="536" font-family="IBM Plex Mono, monospace" font-size="13" fill="#303030" text-anchor="end">Midway</text>
-  </g>
-
-
-  <!-- Compass -->
-  <g transform="translate(806,90)">
-    <circle cx="0" cy="0" r="26" fill="#F1F1EE" stroke="#8A8C79" stroke-width="1"/>
-    <line x1="0" y1="-18" x2="0" y2="18" stroke="#303030" stroke-width="1"/>
-    <line x1="-18" y1="0" x2="18" y2="0" stroke="#303030" stroke-width="1"/>
-    <path d="M0,-18 L-4,-8 L4,-8 Z" fill="#303030"/>
-    <text x="0" y="-24" font-family="IBM Plex Mono, monospace" font-size="11" fill="#303030" text-anchor="middle">N</text>
-  </g>
-
-  <!-- Legend -->
-  <line x1="120" y1="700" x2="780" y2="700" stroke="#8A8C79" stroke-width="1" opacity="0.3"/>
-  <g transform="translate(230,742)">
-    <g transform="translate(-4,-18) scale(1.2)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#303030" fill-rule="evenodd"/>
-    </g>
-    <text x="22" y="2" font-family="IBM Plex Mono, monospace" font-size="12" fill="#303030">Communities we serve</text>
-  </g>
-  <g transform="translate(500,742)">
-    <circle cx="8" cy="-12" r="13" fill="none" stroke="#F4D185" stroke-width="1.5"/>
-    <g transform="translate(-4,-18) scale(1.2)">
-      <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="#F4D185" stroke="#303030" stroke-width="0.6" fill-rule="evenodd"/>
-    </g>
-    <text x="22" y="2" font-family="IBM Plex Mono, monospace" font-size="12" fill="#303030">Home base &mdash; Salt Lake City</text>
-  </g>
-</svg>
+    <div class="service-area-grid">
+      <div>
+        <div class="map-card">
+          <div id="serviceMap" role="img" aria-label="Map of Paragon Premiere's Wasatch Front and Park City service area"></div>
+          <div class="map-attribution-note">Shaded area is an approximate service territory, not a survey boundary.</div>
+        </div>
+        <div class="homebase-card">
+          <div class="hb-item">
+            <svg class="hb-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1112 5.5a3.5 3.5 0 010 7z" fill="currentColor"/></svg>
+            <div>
+              <div class="hb-label">Home Base</div>
+              <div class="hb-value">Salt Lake City, UT</div>
+            </div>
+          </div>
+          <div class="hb-item">
+            <svg class="hb-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 6v6l4 2M22 12a10 10 0 11-20 0 10 10 0 0120 0z" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+            <div>
+              <div class="hb-label">Hours</div>
+              <div class="hb-value">Mon &ndash; Fri &middot; 8:00am &ndash; 5:00pm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:0.9em">Communities we serve</h3>
+    <div class="city-chip-grid">
+      <div class="city-chip">Salt Lake City</div>
+      <div class="city-chip">Holladay</div>
+      <div class="city-chip">Millcreek</div>
+      <div class="city-chip">Cottonwood Heights</div>
+      <div class="city-chip">Sandy</div>
+      <div class="city-chip">Draper</div>
+      <div class="city-chip">Bountiful</div>
+      <div class="city-chip">Park City</div>
+      <div class="city-chip">Deer Valley</div>
+      <div class="city-chip">Jeremy Ranch</div>
+      <div class="city-chip">Kamas</div>
+      <div class="city-chip">Heber City</div>
+      <div class="city-chip">Midway</div>
+      <div class="city-chip">Alpine</div>
+      <div class="city-chip">Highland</div>
+      <div class="city-chip">Lehi</div>
+      <div class="city-chip">American Fork</div>
+      <div class="city-chip">Provo</div>
     </div>
-  </div>
-</section>
 
-<section class="section" style="padding-top:1rem">
-  <div class="container">
-    <div class="grid grid-2">
-    <div class="area-card tick-frame">
-      <span class="region-label">Salt Lake County</span>
-      <h3>Communities we serve</h3>
-      <ul>
-        <li>Salt Lake City</li>
-        <li>Holladay</li>
-        <li>Millcreek</li>
-        <li>Cottonwood Heights</li>
-        <li>Sandy</li>
-        <li>Draper</li>
-        <li>Bountiful</li>
-      </ul>
+        <div class="area-cta-card">
+          <h3>Don't see your neighborhood?</h3>
+          <p>We're expanding across the Wasatch Front &mdash; reach out and we'll let you know.</p>
+          <a href="contact.html" class="btn btn-brass">Check availability</a>
+        </div>
+      </div>
     </div>
-    <div class="area-card tick-frame">
-      <span class="region-label">Summit County</span>
-      <h3>Communities we serve</h3>
-      <ul>
-        <li>Park City</li>
-        <li>Deer Valley</li>
-        <li>Promontory</li>
-        <li>Jeremy Ranch</li>
-        <li>Kamas</li>
-      </ul>
-    </div>
-    <div class="area-card tick-frame">
-      <span class="region-label">Wasatch County</span>
-      <h3>Communities we serve</h3>
-      <ul>
-        <li>Heber City</li>
-        <li>Midway</li>
-        <li>Daniel</li>
-      </ul>
-    </div>
-    <div class="area-card tick-frame">
-      <span class="region-label">Utah County</span>
-      <h3>Communities we serve</h3>
-      <ul>
-        <li>Alpine</li>
-        <li>Highland</li>
-        <li>Lehi</li>
-        <li>American Fork</li>
-        <li>Provo</li>
-      </ul>
-    </div>
-    </div>
-    <p class="note-inline" style="margin-top:2em">Don't see your neighborhood? Reach out &mdash; we're often able to accommodate nearby areas, especially for Private Home Management members.</p>
   </div>
 </section>
 
@@ -340,5 +184,8 @@
   </div>
 </footer>
 <script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
+<script src="js/service-map.js"></script>
 </body>
 </html>
