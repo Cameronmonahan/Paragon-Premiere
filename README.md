@@ -12,7 +12,8 @@ services.html          Add-on catalog & project services
 membership.html         5-tier membership model (Access / Annual Care /
                         Seasonal Care / Complete Care / Private Home Management)
 about.html              Company story, leadership, Home Passport
-service-areas.html      Salt Lake, Summit, Utah & Wasatch counties
+service-areas.html      Salt Lake, Summit, Utah & Wasatch counties, with a
+                        custom SVG service-territory map
 testimonials.html       Client testimonials (placeholder copy — see below)
 contact.html            Contact form + concierge info
 
@@ -53,6 +54,11 @@ push this folder to a repo, then enable Pages on the `main` branch
   for dark backgrounds) were composited from the real Paragon Custom Homes
   P-mark. `symbol_light.png` / `symbol_dark.png` are the mark alone. These
   are a first pass, not final production logo files — see checklist below.
+- **Service area map**: `service-areas.html` includes a hand-built, inline
+  SVG map (no external map API, no API key, nothing to break) showing the
+  four-county territory as clean rounded tiles with pin markers. It's
+  stylized rather than geographically precise. On narrow screens it scrolls
+  horizontally instead of shrinking, so labels stay legible.
 
 ## Before this goes live — replace these placeholders
 
@@ -75,6 +81,10 @@ push this folder to a repo, then enable Pages on the `main` branch
 - [ ] **Hero / team background images** — several sections use styled
       placeholder blocks (gradient fills with a label) instead of real
       photography.
+- [ ] **Service area map** — pin locations and county shapes are stylized
+      for a clean look, not pulled from real GIS boundaries. Fine for a
+      marketing page; swap for a real embedded map if you need literal
+      geographic accuracy.
 - [ ] **Contact form** — front-end only right now (shows a confirmation
       message on submit but doesn't send anywhere). Wire it to a form
       backend (Formspree, Netlify Forms, a serverless function, your CRM,
@@ -88,7 +98,5 @@ push this folder to a repo, then enable Pages on the `main` branch
 Membership tiers, billing philosophy, seasonal checklists, the Home Health
 Report, and the Private Home Management concierge actions are all pulled
 from the "Property concierge service — Luxury Property Concierge Model"
-strategy document. `TIERS` and the sample inspection matrix live near the
-top of the (no-longer-included) build script that generated this site —
-ask Claude to regenerate from source if you want to edit copy
-programmatically rather than by hand in the HTML.
+strategy document. Ask Claude to regenerate from source if you want to edit
+copy programmatically rather than by hand in the HTML.
